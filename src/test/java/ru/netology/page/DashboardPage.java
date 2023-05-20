@@ -1,8 +1,8 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -15,7 +15,13 @@ public class DashboardPage {
     private SelenideElement transferButtonSecond = $$("[data-test-id=action-deposit]").get(1);
     private SelenideElement cardList = $("[data-test-id=dashboard]");
 
+    private SelenideElement error = $("[data-test-id='error-notification']");
+
     public DashboardPage() {
+    }
+
+    public void errorTransferNotification() {
+        error.shouldBe(Condition.visible);
     }
 
     public MoneyTransferPage transferFirstToSecondCard() {
