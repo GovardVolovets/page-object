@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.page.LoginPageV2;
+import ru.netology.page.MoneyTransferPage;
 import static com.codeborne.selenide.Selenide.open;
 
 class MoneyTransferTest {
@@ -76,6 +77,7 @@ class MoneyTransferTest {
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var dashboardPage = verificationPage.validVerify(verificationCode);
+        var moneyTransferPage = new MoneyTransferPage();
 
         var amount = "100000";
         var secondCard = cardInfo;
@@ -83,7 +85,7 @@ class MoneyTransferTest {
         dashboardPage.transferFirstToSecondCard()
                 .transferToCard(secondCard.getNumber(), amount);
 
-        dashboardPage.errorTransferNotification();
+        moneyTransferPage.errorTransferNotification();
     }
 }
 
